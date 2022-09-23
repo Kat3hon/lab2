@@ -2,21 +2,27 @@
 
 void io::getType(int& value) {
 	std::cin >> value;
-	if (std::cin.fail())
-		throw std::runtime_error("Error! Wrong type.");
-	if (std::cin.eof())
+	if (std::cin.fail()) {
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		throw std::invalid_argument("Wrong type.");
+	}
+	if (std::cin.eof()) {
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		throw std::runtime_error("End of file! Breaking...");
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
 	return;
 }
 
 void io::getType(double& value) {
 	std::cin >> value;
-	if (std::cin.fail())
-		throw std::runtime_error("Error! Wrong type.");
-	if (std::cin.eof())
+	if (std::cin.fail()) {
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		throw std::invalid_argument("Wrong type.");
+	}
+	if (std::cin.eof()) {
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		throw std::runtime_error("End of file! Breaking...");
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
 	return;
 }
 

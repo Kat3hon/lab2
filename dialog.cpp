@@ -17,7 +17,7 @@ int dialog::dialog(const char* msgs[], int N) {
 	return rc;
 }
 
-int dialog::change(archSpiral& spiral) {
+int dialog::change(ArchimedeanSpiral& spiral) {
 	std::cout << "Input step of the spiral:" << std::endl;
 	double step;
 	try {
@@ -33,7 +33,7 @@ int dialog::change(archSpiral& spiral) {
 	return 0;
 }
 
-int dialog::centre(archSpiral& spiral) {
+int dialog::centre(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the angle (in radians):" << std::endl;
 	double angle;
 	try {
@@ -47,7 +47,7 @@ int dialog::centre(archSpiral& spiral) {
 	return 0;
 }
 
-int dialog::sector(archSpiral& spiral) {
+int dialog::sector(ArchimedeanSpiral& spiral) {
 	double r1, r2;
 	try {
 		io::radius(r1, r2);
@@ -60,47 +60,35 @@ int dialog::sector(archSpiral& spiral) {
 	return 0;
 }
 
-int dialog::figure(archSpiral& spiral) {
+int dialog::figure(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the number of spiral turn:" << std::endl;
 	double n;
-	char* msg = "";
-	do {
-		std::cout << msg << std::endl;
-		msg = "Error! Wrong value! Try again.";
-		try {
-			io::getType(n);
-		}
-		catch (const std::exception& ex) {
-			std::cout << ex.what() << std::endl;
-			return 1;
-		}
-	} while (n <= 0);	
-
+	try {
+		io::getType(n);
+	}
+	catch (const std::exception& ex) {
+		std::cout << ex.what() << std::endl;
+		return 1;
+	}
 	std::cout << "The area is " << spiral.areaFigure(n) << " ." << std::endl;
 	return 0;
 }
 
-int dialog::circle(archSpiral& spiral) {
+int dialog::circle(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the number of circle:" << std::endl;
 	double n;
-	char* msg = "";
-	do {
-		std::cout << msg << std::endl;
-		msg = "Error! Wrong value! Try again.";
-		try {
-			io::getType(n);
-		}
-		catch (const std::exception& ex) {
-			std::cout << ex.what() << std::endl;
-			return 1;
-		}
-	} while (n <= 0);	
-
+	try {
+		io::getType(n);
+	}
+	catch (const std::exception& ex) {
+		std::cout << ex.what() << std::endl;
+		return 1;
+	}	
 	std::cout << "The area is " << spiral.areaCircle(n) << " ." << std::endl;
 	return 0;
 }
 
-int dialog::arc(archSpiral& spiral) {
+int dialog::arc(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the angle (in radians):" << std::endl;
 	double angle;
 	try {
@@ -114,7 +102,7 @@ int dialog::arc(archSpiral& spiral) {
 	return 0;
 }
 
-int dialog::radius(archSpiral& spiral) {
+int dialog::radius(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the angle (in radians):" << std::endl;
 	double angle;
 	try {
@@ -128,7 +116,7 @@ int dialog::radius(archSpiral& spiral) {
 	return 0;
 }
 
-int dialog::show(archSpiral& spiral) {
+int dialog::show(ArchimedeanSpiral& spiral) {
 	std::cout << "nothing" << std::endl;
 	return 0;
 }

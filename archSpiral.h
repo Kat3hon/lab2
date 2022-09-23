@@ -1,37 +1,79 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
-#define pi 3.14
+#include <numbers>
 
-class archSpiral {
+class ArchimedeanSpiral {
 	private:
-		double step; //step of spiral
+		constexpr static double PI = std::numbers::pi_v<double>;
+		double radian_step; //step of spiral
 	public:
 
-		archSpiral(); //constructor
+		constexpr explicit ArchimedeanSpiral(double value):	radian_step(value) {
+			if (value == 0)
+				throw std::invalid_argument("Invalid coefficient");	
+		}
+
 		~archSpiral(); //destructor
 
-		double getStep() const; //select step
-		void setStep(double value);	//modify step
+		constexpr ArchimedeanSpiral& setRadianStep(double value) {
+			if (value == 0)
+				throw std::invalid_argument("Invalid coefficient");
+			radian_step = value;
+			return *this;
+		}
 
-		double distanceToCentre(const double& angle) const;
-		double areaOfSector(const double& radius1, const double& radius2) const;
+		constexpr double distanceToCentre(const double& angle) const {
+			if (angle < 0)
+				throw std::invalid_argument("Negative angle");
+			return angle*radian_step/(2*PI);
+		}		
+
+		constexpr double areaOfSector(const double& radius1, const double& radius2) const {
+			if (radius1 < 0 || radius2 < 0)
+				throw std::invalid_argument("Negative polar radius");
+			double difference = abs(radius2-radius1)/step;
+			if (difference > 1)
+				throw std::invalid_argument("The angle between two polar radiuses is greater thar 2*PI");
+			else return (radius1*radius1 + radius1*radius2 + radius2*radius2)*difference*2*PI/6;
+		}
+
+		constexpr double areaFigure(const int& numTurn) const {
+			if (numTurn <= 0)
+				throw std::invalid_argument("Invalid coefficient");
+			return radian_step*radian_step*(numTurn*numTurn*numTurn - (numTurn-1)*(numTurn-1)*(numTurn-1))*PI/3;
+		}
+
 		//integral firure and circle
-		double areaFigure(const int num) const; 
-		double areaCircle(const int num) const;
-		double lenghtArc(const double& angle) const;
-		double radiusOfCurvature(const double& angle) const;
+
+		constexpr double areaCircle(const int& numCircle) const {
+			if (numCircle <= 0)
+				throw std::invalid_argument("Invalid coefficient");
+			return radian_step*radian_step*2*numCircle*PI; 
+		}
+
+		constexpr double lenghtArc(const double& angle) const {
+			if (angle < 0)
+				throw std::invalid_argument("Negative angle");
+			return radian_step*(angle*sqrt(1+angle*angle) + log(angle+sqrt(1+angle*angle)))/(2*2*PI);
+		}
+
+		constexpr double radiusOfCurvature(const double& angle) const {
+			if (angle < 0)
+				throw std::invalid_argument("Negative angle");
+			return radian_step*pow((tan(angle)*tan(angle) + 1),3/2)/((1/(cos(angle)*cos(angle))+1)*2*PI);
+		}
 };
 
 namespace dialog {
-	int change(archSpiral&);
-	int centre(archSpiral&);
-	int sector(archSpiral&);
-	int figure(archSpiral&);
-	int circle(archSpiral&);
-	int arc(archSpiral&);
-	int radius(archSpiral&);
-	int show(archSpiral&);
+	int change(ArchimedeanSpiral&);
+	int centre(ArchimedeanSpiral&);
+	int sector(ArchimedeanSpiral&);
+	int figure(ArchimedeanSpiral&);
+	int circle(ArchimedeanSpiral&);
+	int arc(ArchimedeanSpiral&);
+	int radius(ArchimedeanSpiral&);
+	int show(ArchimedeanSpiral&);
 
 	int dialog(const char* msgs[], int Nmsgs);
 };
