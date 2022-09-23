@@ -1,50 +1,43 @@
 #include <iostream>
 #include <cmath>
+#include <limits>
+#define pi 3.14
 
-namespace archSpiral{
-	class archSpiral {
-		private:
-			//coordinates of point O
-			//double x;
-			//double y;
+class archSpiral {
+	private:
+		double step; //step of spiral
+	public:
 
-			//step of spiral
-			double step;
+		archSpiral(); //constructor
+		~archSpiral(); //destructor
 
-			//menu
-			const char* msgs[] = {"\n0.Quit", "1.Change curve", 
-			"2.Lenght from centre to your point", "3.Area of sector", 
-			"4.Area of figure in n-th spiral", "5.Area of n-th circle", 
-			"6.Lenght of arc", "7.Radius of curvature", "8.Show curve"};
-			const int Nmsgs = sizeof(msgs)/sizeof(msgs[0]);
-			int (*fptr[])() = {nullptr, D_change, D_centre, D_sector, 
-							D_figure, D_circle, D_arc, D_radius, D_show};
-			int dialog(const char*, int);
+		double getStep() const; //select step
+		void setStep(double value);	//modify step
 
-		public:
+		double distanceToCentre(const double& angle) const;
+		double areaOfSector(const double& radius1, const double& radius2) const;
+		//integral firure and circle
+		double areaFigure(const int num) const; 
+		double areaCircle(const int num) const;
+		double lenghtArc(const double& angle) const;
+		double radiusOfCurvature(const double& angle) const;
+};
 
-			archSpiral():step = 0; //constructor
-			//archSpiral(const archSpiral &); //copy constructor
+namespace dialog {
+	int change(archSpiral&);
+	int centre(archSpiral&);
+	int sector(archSpiral&);
+	int figure(archSpiral&);
+	int circle(archSpiral&);
+	int arc(archSpiral&);
+	int radius(archSpiral&);
+	int show(archSpiral&);
 
-			~archSpiral(); //destructor
+	int dialog(const char* msgs[], int Nmsgs);
+};
 
-			std::ostream & print (std::ostream &) const;
-
-			//double getCoordinate() const; //select coordinate
-			//void selCoordinate(double);	//modify coordinate
-			double getStep() const; //select step
-			void setStep(double);	//modify step
-
-			//dialog functions
-			D_change();
-			D_centre();
-			D_sector();
-			D_figure();
-			D_circle();
-			D_arc();
-			D_radius();
-			D_show();
-
-	};		
-
+namespace io {
+	void getType(int& value);
+	void getType(double& value);
+	void radius(double& radius1, double& radius2);
 };
