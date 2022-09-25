@@ -1,4 +1,4 @@
-CC=g++ -std=c++14
+CC=g++ -std=c++20
 CFLAGS=-c -Wall
 LDFLAGS=
 

@@ -26,7 +26,7 @@ void io::getType(double& value) {
 	return;
 }
 
-void io::radius(double& r1, double& r2) {
+void io::setRadiuses(double& r1, double& r2) {
 	std::cout << "Input the first polar radius:" << std::endl;
 	io::getType(r1);
 	std::cout << "Input the second poler radius:" << std::endl;

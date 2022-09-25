@@ -14,7 +14,9 @@ class ArchimedeanSpiral {
 				throw std::invalid_argument("Invalid coefficient");	
 		}
 
-		~archSpiral(); //destructor
+		constexpr ~ArchimedeanSpiral() {
+			radian_step = 0;
+		}
 
 		constexpr ArchimedeanSpiral& setRadianStep(double value) {
 			if (value == 0)
@@ -32,7 +34,7 @@ class ArchimedeanSpiral {
 		constexpr double areaOfSector(const double& radius1, const double& radius2) const {
 			if (radius1 < 0 || radius2 < 0)
 				throw std::invalid_argument("Negative polar radius");
-			double difference = abs(radius2-radius1)/step;
+			double difference = abs(radius2-radius1)/radian_step;
 			if (difference > 1)
 				throw std::invalid_argument("The angle between two polar radiuses is greater thar 2*PI");
 			else return (radius1*radius1 + radius1*radius2 + radius2*radius2)*difference*2*PI/6;
@@ -67,12 +69,12 @@ class ArchimedeanSpiral {
 
 namespace dialog {
 	int change(ArchimedeanSpiral&);
-	int centre(ArchimedeanSpiral&);
-	int sector(ArchimedeanSpiral&);
-	int figure(ArchimedeanSpiral&);
-	int circle(ArchimedeanSpiral&);
-	int arc(ArchimedeanSpiral&);
-	int radius(ArchimedeanSpiral&);
+	int distanceToCentre(ArchimedeanSpiral&);
+	int areaOfSector(ArchimedeanSpiral&);
+	int areaFigure(ArchimedeanSpiral&);
+	int areaCircle(ArchimedeanSpiral&);
+	int lenghtArc(ArchimedeanSpiral&);
+	int radiusOfCurvature(ArchimedeanSpiral&);
 	int show(ArchimedeanSpiral&);
 
 	int dialog(const char* msgs[], int Nmsgs);
@@ -81,5 +83,5 @@ namespace dialog {
 namespace io {
 	void getType(int& value);
 	void getType(double& value);
-	void radius(double& radius1, double& radius2);
+	void setRadiuses(double& radius1, double& radius2);
 };

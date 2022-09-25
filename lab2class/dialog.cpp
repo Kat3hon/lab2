@@ -27,13 +27,13 @@ int dialog::change(ArchimedeanSpiral& spiral) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}
-	spiral.setStep(step);
+	spiral.setRadianStep(step);
 	std::cout << "Here is your curve:" << std::endl << std::endl;
 	dialog::show(spiral);
 	return 0;
 }
 
-int dialog::centre(ArchimedeanSpiral& spiral) {
+int dialog::distanceToCentre(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the angle (in radians):" << std::endl;
 	double angle;
 	try {
@@ -47,10 +47,10 @@ int dialog::centre(ArchimedeanSpiral& spiral) {
 	return 0;
 }
 
-int dialog::sector(ArchimedeanSpiral& spiral) {
+int dialog::areaOfSector(ArchimedeanSpiral& spiral) {
 	double r1, r2;
 	try {
-		io::radius(r1, r2);
+		io::setRadiuses(r1, r2);
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
@@ -60,7 +60,7 @@ int dialog::sector(ArchimedeanSpiral& spiral) {
 	return 0;
 }
 
-int dialog::figure(ArchimedeanSpiral& spiral) {
+int dialog::areaFigure(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the number of spiral turn:" << std::endl;
 	double n;
 	try {
@@ -74,7 +74,7 @@ int dialog::figure(ArchimedeanSpiral& spiral) {
 	return 0;
 }
 
-int dialog::circle(ArchimedeanSpiral& spiral) {
+int dialog::areaCircle(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the number of circle:" << std::endl;
 	double n;
 	try {
@@ -88,7 +88,7 @@ int dialog::circle(ArchimedeanSpiral& spiral) {
 	return 0;
 }
 
-int dialog::arc(ArchimedeanSpiral& spiral) {
+int dialog::lenghtArc(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the angle (in radians):" << std::endl;
 	double angle;
 	try {
@@ -98,11 +98,11 @@ int dialog::arc(ArchimedeanSpiral& spiral) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}
-	std::cout << "The lenght of arc is" << spiral.lenghtArc(angle) << " ." << std::endl;
+	std::cout << "The lenght of arc is " << spiral.lenghtArc(angle) << " ." << std::endl;
 	return 0;
 }
 
-int dialog::radius(ArchimedeanSpiral& spiral) {
+int dialog::radiusOfCurvature(ArchimedeanSpiral& spiral) {
 	std::cout << "Input the angle (in radians):" << std::endl;
 	double angle;
 	try {
