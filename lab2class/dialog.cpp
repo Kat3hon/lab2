@@ -28,8 +28,6 @@ int dialog::change(ArchimedeanSpiral& spiral) {
 		return 1;
 	}
 	spiral.setRadianStep(step);
-	std::cout << "Here is your curve:" << std::endl << std::endl;
-	dialog::show(spiral);
 	return 0;
 }
 
@@ -57,6 +55,7 @@ int dialog::areaOfSector(ArchimedeanSpiral& spiral) {
 		return 1;
 	}
 	std::cout << "The area is " << spiral.areaOfSector(r1, r2) << " ." << std::endl;
+	std::cout << "(With integral) The area is " << spiral.areaOfSectorIntegral(r1, r2) << " ." << std::endl;
 	return 0;
 }
 
@@ -71,6 +70,7 @@ int dialog::areaFigure(ArchimedeanSpiral& spiral) {
 		return 1;
 	}
 	std::cout << "The area is " << spiral.areaFigure(n) << " ." << std::endl;
+	std::cout << "(With integral) The area is " << spiral.areaFigureIntegral(n) << " ." << std::endl;
 	return 0;
 }
 
@@ -85,6 +85,7 @@ int dialog::areaCircle(ArchimedeanSpiral& spiral) {
 		return 1;
 	}	
 	std::cout << "The area is " << spiral.areaCircle(n) << " ." << std::endl;
+	std::cout << "The area is " << spiral.areaCircleIntegral(n) << " ." << std::endl;
 	return 0;
 }
 
@@ -113,10 +114,5 @@ int dialog::radiusOfCurvature(ArchimedeanSpiral& spiral) {
 		return 1;
 	}
 	std::cout << "The radius is " << spiral.radiusOfCurvature(angle) << " ." << std::endl;
-	return 0;
-}
-
-int dialog::show(ArchimedeanSpiral& spiral) {
-	std::cout << "nothing" << std::endl;
 	return 0;
 }

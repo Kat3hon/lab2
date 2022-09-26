@@ -3,7 +3,7 @@ CFLAGS=-c -Wall
 LDFLAGS=
 
 libarchspiral.a: dialog.o help.o
-	ar cr libarchspiral.a dialog.o help.o
+	ar cr libarchspiral.a dialog.o help.o archSpiral.h
 
 dialog.o: dialog.cpp archSpiral.h
 	$(CC) $(CFLAGS) dialog.cpp
