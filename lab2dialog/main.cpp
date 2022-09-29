@@ -1,4 +1,4 @@
-#include "archspiral.h"
+#include "dialog.h"
 
 int main() {
 	std::cout << "Let's start!" << std::endl << std::endl;
@@ -11,7 +11,7 @@ int main() {
 	const int Nmsgs = sizeof(msgs)/sizeof(msgs[0]);
 	int (*fptr[])(ArchimedeanSpiral&) = {nullptr, dialog::change, dialog::distanceToCentre,
 										dialog::areaOfSector, dialog::areaFigure, dialog::areaCircle,
-										dialog::lenghtArc, dialog::radiusOfCurvature;
+										dialog::lenghtArc, dialog::radiusOfCurvature};
 	while (rc = dialog::dialog(msgs, Nmsgs))
 		if(fptr[rc](curve))
 			break;

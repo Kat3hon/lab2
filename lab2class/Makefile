@@ -2,14 +2,16 @@ CC=g++ -std=c++20
 CFLAGS=-c -Wall
 LDFLAGS=
 
-libarchspiral.a: dialog.o help.o
-	ar cr libarchspiral.a dialog.o help.o archSpiral.h
+libarchspiral.a: classFunctions.o
+	ar rc libarchspiral.a classFunctions.o
+	ranlib libarchspiral.a
+	cp archspiral.h ~/c++/lab2/lab2dialog
+	cp libarchspiral.a ~/c++/lab2/lab2dialog
+	cp archspiral.h ~/c++/lab2/lab2tests
+	cp libarchspiral.a ~/c++/lab2/lab2tests
 
-dialog.o: dialog.cpp archSpiral.h
-	$(CC) $(CFLAGS) dialog.cpp
-
-help.o: help.cpp archSpiral.h
-	$(CC) $(CFLAGS) help.cpp
+classFunctions.o: classFunctions.cpp archspiral.h
+	$(CC) $(CFLAGS) classFunctions.cpp
 
 clean:
 	rm -f *.o *.a exe

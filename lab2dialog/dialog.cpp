@@ -1,4 +1,4 @@
-#include "archSpiral.h"
+#include "dialog.h"
 
 int dialog::dialog(const char* msgs[], int N) {
 	int rc;
@@ -22,12 +22,12 @@ int dialog::change(ArchimedeanSpiral& spiral) {
 	double step;
 	try {
 		io::getType(step);
+		spiral.setRadianStep(step);
 	}
 	catch(const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}
-	spiral.setRadianStep(step);
 	return 0;
 }
 
@@ -36,12 +36,12 @@ int dialog::distanceToCentre(ArchimedeanSpiral& spiral) {
 	double angle;
 	try {
 		io::getType(angle);
+		std::cout << "The distance is " << spiral.distanceToCentre(angle) << " ." << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}
-	std::cout << "The distance is " << spiral.distanceToCentre(angle) << " ." << std::endl;
 	return 0;
 }
 
@@ -49,13 +49,13 @@ int dialog::areaOfSector(ArchimedeanSpiral& spiral) {
 	double r1, r2;
 	try {
 		io::setRadiuses(r1, r2);
+		std::cout << "The area is " << spiral.areaOfSector(r1, r2) << " ." << std::endl;
+		std::cout << "(With integral) The area is " << spiral.areaOfSectorIntegral(r1, r2) << " ." << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}
-	std::cout << "The area is " << spiral.areaOfSector(r1, r2) << " ." << std::endl;
-	std::cout << "(With integral) The area is " << spiral.areaOfSectorIntegral(r1, r2) << " ." << std::endl;
 	return 0;
 }
 
@@ -64,13 +64,13 @@ int dialog::areaFigure(ArchimedeanSpiral& spiral) {
 	double n;
 	try {
 		io::getType(n);
+		std::cout << "The area is " << spiral.areaFigure(n) << " ." << std::endl;
+		std::cout << "(With integral) The area is " << spiral.areaFigureIntegral(n) << " ." << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}
-	std::cout << "The area is " << spiral.areaFigure(n) << " ." << std::endl;
-	std::cout << "(With integral) The area is " << spiral.areaFigureIntegral(n) << " ." << std::endl;
 	return 0;
 }
 
@@ -79,13 +79,13 @@ int dialog::areaCircle(ArchimedeanSpiral& spiral) {
 	double n;
 	try {
 		io::getType(n);
+		std::cout << "The area is " << spiral.areaCircle(n) << " ." << std::endl;
+		std::cout << "The area is " << spiral.areaCircleIntegral(n) << " ." << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}	
-	std::cout << "The area is " << spiral.areaCircle(n) << " ." << std::endl;
-	std::cout << "The area is " << spiral.areaCircleIntegral(n) << " ." << std::endl;
 	return 0;
 }
 
@@ -94,12 +94,12 @@ int dialog::lenghtArc(ArchimedeanSpiral& spiral) {
 	double angle;
 	try {
 		io::getType(angle);
+		std::cout << "The lenght of arc is " << spiral.lenghtArc(angle) << " ." << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}
-	std::cout << "The lenght of arc is " << spiral.lenghtArc(angle) << " ." << std::endl;
 	return 0;
 }
 
@@ -108,6 +108,7 @@ int dialog::radiusOfCurvature(ArchimedeanSpiral& spiral) {
 	double angle;
 	try {
 		io::getType(angle);
+		std::cout << "The radius is " << spiral.radiusOfCurvature(angle) << " ." << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;

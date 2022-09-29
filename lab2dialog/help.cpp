@@ -1,4 +1,4 @@
-#include "archSpiral.h"
+#include "dialog.h"
 
 void io::getType(int& value) {
 	std::cin >> value;
