@@ -6,7 +6,7 @@
 
 class ArchimedeanSpiral {
 	private:
-		constexpr static double delta = 0.001;
+		constexpr static double delta = 0.0001;
 		double radian_step;
 
 		double integral(const double& angle, const double& radius) const;
@@ -23,6 +23,8 @@ class ArchimedeanSpiral {
 		}
 
 		ArchimedeanSpiral& setRadianStep(double value);
+
+		double getRadianStep() const;
 
 		double distanceToCentre(const double& angle) const;
 

@@ -1,6 +1,6 @@
 CC=g++ -std=c++20
 CFLAGS=-c -Wall
-LDFLAGS=-L. -larchspiral
+LDFLAGS=-L. -lgtest -larchspiral
 
 all: exe
 

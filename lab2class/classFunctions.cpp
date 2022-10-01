@@ -7,6 +7,10 @@ ArchimedeanSpiral& ArchimedeanSpiral::setRadianStep(double value) {
 	return *this;
 } 
 
+double ArchimedeanSpiral::getRadianStep() const {
+	return radian_step;
+}
+
 double ArchimedeanSpiral::distanceToCentre(const double& angle) const {
 	if (angle < 0)
 		throw std::invalid_argument("Negative angle");
@@ -37,8 +41,8 @@ double ArchimedeanSpiral::integral(const int& num) const {
 	if (num < 0) 
 		throw std::invalid_argument("Negative radius");
 	double result = 0;
-	for (double start = 0; start < 2*M_PI; start += delta)
-		result += delta*pow(radian_step, 2)*2*M_PI*num;
+	for (double start = delta; start < 2*M_PI; start += delta)
+		result += delta*pow(radian_step*num, 2);
 	return result/2;	
 }
 
@@ -67,7 +71,7 @@ double ArchimedeanSpiral::areaFigureIntegral(const int& numTurn) const {
 double ArchimedeanSpiral::areaCircle(const int& numCircle) const {
 	if (numCircle <= 0)
 		throw std::invalid_argument("Invalid coefficient");
-	return pow(radian_step,2)*2*numCircle*M_PI; 
+	return pow(radian_step*numCircle,2)*M_PI; 
 }
 
 double ArchimedeanSpiral::areaCircleIntegral(const int& numCircle) const {

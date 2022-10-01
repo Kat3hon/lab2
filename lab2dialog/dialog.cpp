@@ -114,6 +114,5 @@ int dialog::radiusOfCurvature(ArchimedeanSpiral& spiral) {
 		std::cout << ex.what() << std::endl;
 		return 1;
 	}
-	std::cout << "The radius is " << spiral.radiusOfCurvature(angle) << " ." << std::endl;
 	return 0;
 }
